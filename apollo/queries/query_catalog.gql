@@ -1,0 +1,56 @@
+query pengaturanBarang(
+		$skip: Int,
+		$take: Int,
+		$owner: String,
+		$upc: String,
+		$keywords: [String]
+	) {
+		pengaturanBarang(
+			skip: $skip,
+			take: $take,
+			owner: $owner,
+			upc: $upc,
+			keywords: $keywords
+		) {
+			upc,
+			nama,
+			thumbnail,
+			opsi{
+				id, 
+				judul, 
+				varian{
+					parameter, 
+					value, 
+					sku, 
+					bundle
+				},
+				bundle
+			},
+			list_harga{
+				id, 
+				harga{
+					nominal, 
+					currency
+				},
+				mulai{
+					date, 
+					timezone_type, 
+					timezone
+				},
+				hingga{
+					date, 
+					timezone_type, 
+					timezone
+				},
+				penetapan{
+					satuan, 
+					bundle
+				},
+				berlaku
+			}
+			list_grup{
+				keyword,
+				berlaku
+			}
+		}
+}

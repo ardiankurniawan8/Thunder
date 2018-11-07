@@ -1,0 +1,7 @@
+mutation StoreSlider($input: [ISlider]) {
+	StoreSlider(input: $input) {
+    	id,
+    	link_url,
+		image_url
+	}
+}

@@ -1,0 +1,21 @@
+query AllPrayer($id: String, 
+				$skip: Int, 
+				$take: Int,
+				$orderby: [OrderBy]
+			) 	{
+		AllPrayer(
+				id: $id, 
+				skip:$skip, 
+				take:$take,
+				orderby:$orderby
+			) 
+		{
+			id,
+			content,
+			user{id, name},
+			created_at
+		},
+	AllPrayerCount(
+		id: $id, 
+	)
+}

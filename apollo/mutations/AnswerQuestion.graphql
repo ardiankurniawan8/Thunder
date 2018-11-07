@@ -1,0 +1,12 @@
+mutation Answer($id: String, $input: IAnswer) {
+	Answer(id: $id, input: $input) {
+		id,
+        user{id, name, username},
+        question,
+        description,
+        answer,
+        published_at,
+        category,
+        created_at,
+	}
+}

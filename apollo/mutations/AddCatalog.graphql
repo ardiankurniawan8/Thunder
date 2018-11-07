@@ -1,0 +1,62 @@
+mutation updateBarang(
+	$id: String, 
+	$input: IBarang, 
+	$tambahOpsi: [IBarangOpsi], 
+	$hapusOpsi: [String], 
+	$tambahHarga: [IBarangHarga], 
+	$hapusHarga: [String], 
+	$tambahGrup: [IBarangGrup], 
+	$hapusGrup: [String]
+) {
+	updateBarang(
+		id: $id, 
+		input: $input, 
+		tambahOpsi: $tambahOpsi, 
+		hapusOpsi: $hapusOpsi, 
+		tambahHarga: $tambahHarga, 
+		hapusHarga: $hapusHarga, 
+		tambahGrup: $tambahGrup, 
+		hapusGrup: $hapusGrup
+	) {
+		upc,
+		nama,
+		thumbnail,
+		opsi{
+			id,
+			judul,
+			varian{
+				parameter,
+				value,
+				sku,
+				bundle
+			},
+			bundle
+		},
+		list_harga{
+			id,
+			harga{
+				nominal,
+				currency
+			},
+			mulai{
+				date,
+				timezone_type,
+				timezone
+			},
+			hingga{
+				date,
+				timezone_type,
+				timezone
+			},
+			penetapan{
+				satuan,
+				bundle
+			},
+			berlaku
+		},
+		list_grup{
+			keyword,
+			berlaku
+		}
+	}
+}

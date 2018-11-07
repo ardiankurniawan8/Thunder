@@ -1,0 +1,8 @@
+mutation StoreAbout($input: IAbout) {
+	StoreAbout(input: $input) {
+    ee_history,
+    ee4g_why,
+    ee4g_about,
+    contact_us
+	}
+}

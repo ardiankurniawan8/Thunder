@@ -1,0 +1,6 @@
+query User($id: String, $name: String, $skip: Int, $take: Int) {
+	User(id: $id, name:$name, skip:$skip, take:$take) {
+		id,
+		name
+	}
+}

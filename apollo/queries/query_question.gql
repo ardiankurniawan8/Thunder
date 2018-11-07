@@ -1,0 +1,28 @@
+query AllQuestion($id: String, 
+				$published: Boolean,
+				$skip: Int, 
+				$take: Int,
+				$orderby: [OrderBy]
+			) 	{
+		AllQuestion(
+				id: $id, 
+				published: $published,
+				skip:$skip, 
+				take:$take,
+				orderby:$orderby
+			) 
+		{
+			id,
+			question,
+			answer,
+			category,
+			description,
+			published_at,
+			created_at,
+			user{id, name, username}
+		},
+	AllQuestionCount(
+		id: $id, 
+		published:$published
+	)
+}

@@ -1,0 +1,7 @@
+query Organization($id: String, $name: String, $skip: Int, $take: Int, $orderby: [OrderBy]) {
+	Organization(id: $id, name:$name, skip:$skip, take:$take, orderby: $orderby) {
+		id,
+		name
+	},
+	OrganizationCount(id: $id, name:$name, skip:$skip, take:$take) 
+}

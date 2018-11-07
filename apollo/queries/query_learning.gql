@@ -1,0 +1,20 @@
+query Learning 	{
+	Learning 
+	{
+		kehidupan_sehari_hari{text, audio, video},
+		latar_belakang_rohani{text, audio, video},
+		kegiatan_rohani{text, audio, video},
+		kesaksian_pribadi{text, audio, video},
+		mengajukan_pertanyaan{text, audio, video},
+		anugerah{text, audio, video},
+		manusia{text, audio, video},
+		allah{text, audio, video},
+		kristus{text, audio, video},
+		iman{text, audio, video},
+		komitmen{text, audio, video},
+		pertumbuhan{text, audio, video},
+		gaya_hidup{text, audio, video},
+		memuridkan{text, audio, video},
+		terus_bertumbuh{text, audio, video}
+	}
+}

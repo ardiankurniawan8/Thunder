@@ -1,0 +1,56 @@
+query AllReport($id: String, 
+				$submitted_after: String,
+				$submitted_before: String,
+				$after: String,
+				$before: String,
+				$username: String,
+				$name: String,
+				$skip: Int, 
+				$take: Int,
+				$orderby: [OrderBy]
+			) 	{
+		AllReport(
+				id: $id, 
+				submitted_after: $submitted_after,
+				submitted_before: $submitted_before,
+				after: $after,
+				before: $before,
+				username: $username,
+				name: $name,
+				skip:$skip, 
+				take:$take,
+				orderby:$orderby
+			) 
+		{
+			id,
+	        user{id, name, username, roles},
+	        nama,
+	        alamat,
+	        kota,
+	        kehidupan_sehari_hari,
+	        latar_belakang_rohani,
+	        kegiatan_rohani,
+	        pertanyaan_jembatan,
+	        pd1,
+	        pd2,
+	        kisah_injil,
+	        pert_penjelasan,
+	        pert_komitmen,
+	        doa_komitmen,
+	        pertumbuhan,
+	        keterangan,
+	        tanggal,
+	        penyaji,
+	        created_at,
+		},
+	AllReportCount(
+		id: $id, 
+		submitted_after: $submitted_after,
+		submitted_before: $submitted_before,
+		after: $after,
+		before: $before,
+		username: $username,
+		name: $name
+	)
+}
+

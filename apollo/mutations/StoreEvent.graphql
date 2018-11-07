@@ -1,0 +1,11 @@
+mutation StoreEvent($id: String, $input: IEvent, $addSchedule: [IEventSchedule], $removeSchedule: [String], $addAttendance: [IEventAttendance], $removeAttendance: [String]) {
+	StoreEvent(id: $id, input: $input, addSchedule: $addSchedule, removeSchedule: $removeSchedule, addAttendance: $addAttendance, removeAttendance: $removeAttendance) {
+		id,
+		name,
+		content,
+		city,
+		published_at,
+		schedules{at, description},
+		attendances{user_id, name}
+	}
+}

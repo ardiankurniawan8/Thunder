@@ -1,0 +1,23 @@
+query Member(
+		$id: String,
+		$username: String,
+		$skip: Int, 
+		$take: Int,
+		$orderby: [OrderBy]
+	) {
+		Member(
+			id: $id,
+			username: $username,
+			skip:$skip, 
+			take:$take,
+			orderby:$orderby
+		) {
+				id,
+				username,
+				name,
+				roles
+			},
+		MemberCount(
+			id: $id 
+		)
+}

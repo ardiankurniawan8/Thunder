@@ -1,0 +1,6 @@
+mutation Authenticate($input: InputLogin) {
+	Authenticate(input: $input) {
+		user {name, username},
+		token
+	}
+}

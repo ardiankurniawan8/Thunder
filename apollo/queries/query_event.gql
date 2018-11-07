@@ -1,0 +1,30 @@
+query AllEvent(
+		$id: String,
+		$after: String,
+		$unpublished : Boolean, 
+		$skip: Int, 
+		$take: Int,
+		$orderby: [OrderBy]
+	) {
+		AllEvent(
+			id: $id,
+			after:$after, 
+			unpublished:$unpublished, 
+			skip:$skip, 
+			take:$take,
+			orderby:$orderby
+		) {
+				id,
+				name,
+				content,
+				city,
+				published_at,
+				schedules{id, at, description},
+				attendances{user_id, name}
+			},
+		AllEventCount(
+			id: $id, 
+			after: $after,
+			unpublished: $unpublished
+		)
+}

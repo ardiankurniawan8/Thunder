@@ -1,0 +1,19 @@
+query pengaturanGrup(
+		$skip: Int,
+		$take: Int,
+		$owner: String,
+		$tipe: String
+	) {
+		pengaturanGrup(
+			skip: $skip,
+			take: $take,
+			owner: $owner,
+			tipe: $tipe
+		) {
+			kode_owner,
+			grup_id,
+			tipe,
+			nama,
+			slug
+		}
+}

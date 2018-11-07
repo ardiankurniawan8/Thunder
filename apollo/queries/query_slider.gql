@@ -1,0 +1,8 @@
+query Slider{
+	Slider 
+	{
+		id,
+		link_url,
+		image_url
+	}
+}

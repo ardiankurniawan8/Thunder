@@ -1,0 +1,18 @@
+query SalesKatalog(
+		$toko: String,
+		$kostumer: String,
+		$waktu: time
+) {
+	SalesKatalog(
+		toko: $toko, 
+		kostumer: $kostumer, 
+		waktu: $waktu
+	) {
+		upc, 
+		nama, 
+		harga{nominal,currency}, 
+		thumbnail, 
+		varian{size,stok}, 
+		promo {judul, deskripsi, potongan{nominal,currency}}
+	}
+}

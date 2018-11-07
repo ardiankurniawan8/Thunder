@@ -1,0 +1,30 @@
+query AllStory($id: String, 
+				$published: Boolean,
+				$submitted: Boolean,
+				$skip: Int, 
+				$take: Int,
+				$orderby: [OrderBy]
+			) 	{
+		AllStory(
+				id: $id, 
+				published: $published,
+				submitted: $submitted,
+				skip:$skip, 
+				take:$take,
+				orderby:$orderby
+			) 
+		{
+			id,
+			title,
+			submitted_at,
+			published_at,
+			content,
+			editted_content,
+			user{id, name}
+		},
+	AllStoryCount(
+		id: $id, 
+		published:$published,
+		submitted:$submitted 
+	)
+}

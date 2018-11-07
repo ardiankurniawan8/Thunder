@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500');
+
+// Customize
+$body-bg:                    #eee;
+$body-color:                 #12263f;
+
+$enable-rounded:             true;
+
+$theme-colors: (
+  "primary":                 #28bc83,
+  "danger":                  #ff4136,
+  "secondary":               #e7ebf3
+);
+
+$border-color:               #e7ebf3 !default;
+
+// FONT
+$font-family-sans-serif:    "Quicksand", sans-serif;
+$font-size-base:            .9375rem;
+
+// FORM
+$input-placeholder-color:    #adb5bd !default;
+$custom-file-color:          #adb5bd !default;
+$custom-file-text: (
+  en: "Cari"
+) !default;
+
+// CARD
+$card-border-color:       #e7ebf3 !default;
+
+// Import
+@import "node_modules/bootstrap/scss/bootstrap";
+
+// Classes
+* {
+    font-weight: 400;
+}
+
+.shadow {
+    box-shadow: 5px 10px 10px #888888;
+}
+
+.shadow-1 {
+    box-shadow: 0px 2px 4px #888;
+}
+
+// NAVBAR
+.navbar-nav .nav-link.active { color: #FD595E !important; }
+.navbar-second {
+    .navbar-brand {
+        color: #b2b2b2;
+    }
+}
+
+
+// Plugins vue-select
+.v-select .dropdown-toggle {
+    @extend .form-control;
+}
+
+// Material Design Icon
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }

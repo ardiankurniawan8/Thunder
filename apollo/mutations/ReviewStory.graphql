@@ -1,0 +1,12 @@
+mutation ReviewStory($id: String, $input: IStory) {
+	ReviewStory(id: $id, input: $input) {
+		id,
+        user{id, name, username, roles},
+        title,
+        content,
+        submitted_at,
+        editted_content,
+        published_at,
+        created_at,
+	}
+}
