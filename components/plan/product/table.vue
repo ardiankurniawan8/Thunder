@@ -5,6 +5,9 @@
       :items="dataTable"
       @row-clicked="rowClicked"
       empty-text="Tidak ada data">
+      <template slot="harga" slot-scope="data">
+        <span v-if="data.item.list_harga[0]">{{data.item.list_harga[0].harga.currency}} {{data.item.list_harga[0].harga.nominal | toCurrency}}</span>
+      </template>
     </b-table>
   </div>
 </template>
@@ -68,7 +71,8 @@ export default {
         filter: {},
         availableHeaders: [
           { key: 'upc', label: 'Kode', sortable: true },
-          { key: 'nama', label: 'Nama', sortable: true }
+          { key: 'nama', label: 'Nama', sortable: true },
+          { key: 'harga', label: 'Harga', sortable: true }
         ]
       }
     }
@@ -119,12 +123,12 @@ export default {
           vm.$emit('SUBMIT_ERROR', 'Fail to connect to server')
         }
       })
+    },
+    rowClicked (record, index) {
+      let vm = this
+      // console.log(vm.dataFilter)
+      vm.$nuxt.$router.replace({path: '/basil/plan/' + record.upc, query: vm.dataFilter})
     }
-    // rowClicked (record, index) {
-    //   let vm = this
-    //   // console.log(vm.dataFilter)
-    //   vm.$nuxt.$router.replace({path: '/plan/product/' + record.upc, query: vm.dataFilter})
-    // }
   }
 }
 </script>

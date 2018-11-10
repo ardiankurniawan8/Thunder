@@ -2,85 +2,53 @@
   <div class="container-fluid">
     <b-row align-h="between">
       <b-col cols="12" md="6">
-        <b-button variant="primary mb-3 px-3" :to="'/catalog/product'">Kembali</b-button>
-      </b-col>
-      <b-col cols="12" md="6" class="text-right">
-        <b-button variant="primary mb-3 px-3" :to="{path: '/catalog/product/add/', query: $route.query}">Ubah</b-button>
+        <b-button variant="primary mb-3 px-3" :to="'/basil/plan'">Kembali</b-button>
       </b-col>
     </b-row>
-    <b-card>
-      <b-media>
-        <b-img-lazy v-if="table.data.thumbnail"  slot="aside" :src="`${table.data.thumbnail}`" :alt="table.data.nama" thumbnail fluid  blank-color="#bbb"/>
-        <b-img v-else blank slot="aside" :alt="table.data.nama" thumbnail fluid  blank-color="#bbb" width="230"/>
-        <div class="p-3">
-          <h4>{{ table.data.nama }} - {{ table.data.upc }}</h4>
-          <p class="font-weight-light">
-            <span v-if="table.data.harga">{{ table.data.harga.currency }} {{ table.data.harga.nominal | toCurrency }}</span>
-          </p>
-          <p class="mb-1"><strong>Kategori</strong></p>
-          <div v-if="table.data.list_grup">
-            <b-badge class="mr-1" variant="primary" v-for="grup in table.data.list_grup">
-              {{grup.keyword.substring(grup.keyword.lastIndexOf(",") + 1)}}
-            </b-badge>
+    <b-card title="Tambah Plan">
+      <div class='card-text pt-4 box-shadow'>
+        <b-form validated> <!-- @submit="onSubmit" --> 
+
+          <div class="row">
+            <p>{{this.table.data.upc}}</p>
+            <div class="col-5 col-md-5">
+              <b-form-group label="Kode">
+                <b-form-input data-vv-name="kode" v-validate="'required|min:3'" v-model="form.kode" :state="errors.has('kode')" placeholder="Kode"></b-form-input>
+                <b-form-invalid-feedback :force-show="errors.has('kode')">{{ errors.first('kode') }}</b-form-invalid-feedback>
+              </b-form-group>
+            </div>
+            <div class="col-12 col-md-7">
+              <b-form-group label="Nama">
+                <b-form-input data-vv-name="Nama" v-validate="'required|min:3'" v-model="form.nama" :state="errors.has('Nama')" placeholder="Nama Plan"></b-form-input>
+                <b-form-invalid-feedback :force-show="errors.has('Nama')">{{ errors.first('Nama') }}</b-form-invalid-feedback>
+              </b-form-group>
+            </div>
+            <div class="col-12 col-md-5">
+              <b-form-group prepend="IDR" label="Harga">
+                <b-form-input min="0" step="1000" data-vv-name="harga" v-validate="'required|min:3'" v-model="form.harga" :state="errors.has('harga')" placeholder="Harga Plan" type="number"></b-form-input>
+                <b-form-invalid-feedback :force-show="errors.has('harga')">{{ errors.first('harga') }}</b-form-invalid-feedback>
+              </b-form-group>
+            </div>
           </div>
-          <div class="clearfix">&nbsp;</div>
-
-          <!-- varian -->
-          <p v-if="table.data.opsi && table.data.opsi.length != 0"><strong>Opsi</strong></p>
-          <div v-if="table.data.opsi && table.data.opsi.length != 0" v-for="opsi in table.data.opsi">
-            <b-card :header="opsi.judul" header-tag="header" class="w-100">
-              <b-table hover small
-                show-empty
-                :empty-text="'Belum ada ' + opsi.judul"
-                class="text-capitalize"
-                :fields="[
-                {key: 'parameter', label: 'Jenis', thClass: 'font-weight-bold border-top-0'}, 
-                {key: 'value', label: 'Nilai', thClass: 'font-weight-bold border-top-0'}, 
-                {key: 'sku', label: 'SKU', thClass: 'font-weight-bold border-top-0'}]"
-                :items="opsi.varian">
-              </b-table>
-            </b-card>
-            <div class="clearfix">&nbsp;</div>
-          </div>
-          <div class="clearfix">&nbsp;</div>
-
-          <!-- list harga -->
-          <p v-if="table.data.list_harga && table.data.list_harga != 0"><strong>List Harga</strong></p>
-          <div v-if="table.data.list_harga && table.data.list_harga != 0" >
-            <b-card  header-tag="header" class="w-100">
-              <b-table hover small
-                show-empty
-                empty-text="Belum ada list harga"
-                class="text-capitalize"
-                :fields="[
-                  {key: 'harga', label: 'Harga', thClass: 'font-weight-bold border-top-0'}, 
-                  {key: 'mulai', label: 'Berlaku Tgl', thClass: 'font-weight-bold border-top-0'}, 
-                  {key: 'penetapan', label: 'Satuan', thClass: 'font-weight-bold border-top-0'}
-                ]"
-                :items="table.data.list_harga">
-                <template slot="harga" slot-scope="data">
-                  <span v-if="data.item.harga">{{ data.item.harga.currency }} {{ data.item.harga.nominal | toCurrency }}</span>
-                </template>
-
-                <template slot="mulai" slot-scope="data">
-                  <span v-if="data.item.mulai">{{ data.item.mulai.date | toDateTime }}</span>
-                </template>
-
-                <template slot="penetapan" slot-scope="data">
-                  <span v-if="data.item.penetapan" class="text-uppercase">{{ data.item.penetapan.satuan }}</span>
-                </template>
-              </b-table>
-            </b-card>
-          </div>
-        </div>
-        <div class="clearfix">&nbsp;</div>
-      </b-media>
+          <b-row>
+            <b-col cols="12">
+              <slot name='action'></slot>
+              <b-button type="submit" variant="primary" block :disabled="isLoading">
+                <span v-if="isLoading"><i class="fas fa-spinner fa-spin"></i> Simpan</span>
+                <span v-else>Simpan</span>
+              </b-button>
+            </b-col>
+          </b-row>
+          
+        </b-form>
+      </div>
     </b-card>
+
   </div>
 </template>
 
 <script>
-import CatalogQuery from '~/apollo/queries/query_catalog'
+import PlanQuery from '~/apollo/queries/query_plan'
 
 export default {
   props: {
@@ -111,6 +79,11 @@ export default {
       table: {
         data: [],
         filter: {}
+      },
+      form: {
+        kode: '',
+        nama: '',
+        harga: ''
       }
     }
   },
@@ -128,7 +101,7 @@ export default {
 
       this.$apollo.query(
         {
-          query: CatalogQuery,
+          query: PlanQuery,
           variables: queryVar,
           fetchPolicy: 'no-cache'
         }

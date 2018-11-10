@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <b-row align-h="between">
       <b-col cols="12" md="6">
-        <b-button variant="primary mb-3 px-3" :to="'/catalog/product'">Kembali</b-button>
+        <b-button variant="primary mb-3 px-3" :to="'/basil/plan'">Kembali</b-button>
       </b-col>
       <b-col cols="12" md="6" class="text-right">
         <b-button variant="primary mb-3 px-3" :to="{path: '/catalog/product/add/', query: $route.query}">Ubah</b-button>

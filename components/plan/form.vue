@@ -5,7 +5,7 @@
       <div class="col-5 col-md-5">
         <b-form-group label="Kode">
           <b-form-input data-vv-name="kode" v-validate="'required|min:3'" v-model="form.kode" :state="errors.has('kode')" placeholder="Kode"></b-form-input>
-          <b-form-invalid-feedback :force-show="errors.has('UPC')">{{ errors.first('UPC') }}</b-form-invalid-feedback>
+          <b-form-invalid-feedback :force-show="errors.has('kode')">{{ errors.first('kode') }}</b-form-invalid-feedback>
         </b-form-group>
       </div>
       <div class="col-12 col-md-7">
@@ -105,108 +105,43 @@
 </template>
 
 <script>
-import GrupQuery from '~/apollo/queries/query_group'
-import AddCatalog from '~/apollo/mutations/AddCatalog'
-import VueNumeric from 'vue-numeric'
+import AddPlan from '~/apollo/mutations/AddPlan'
 
 export default {
-  props: {
-    defaultData: {
-      type: Array,
-      default: function () {
-        return []
-      }
-    },
-    ownerID: {
-      type: String,
-      required: true
-    },
-    productUPC: {
-      type: String,
-      default: null
-    }
+  apollo: {
+  },
+  mounted () {
   },
   data () {
     return {
       form: {
-        upc: '',
-        thumbnail: '',
+        kode: '',
         nama: '',
-        kode_owner: ''
-      },
-      category: [],
-      listCategory: [],
-      isLoading: false
-    }
-  },
-  mounted () {
-    this.loadCategory()
-  },
-  computed: {
-    transformInput: function () {
-      return {
-        input: {
-          upc: this.formData.upc
-        }
+        harga: '',
+        tanggal: ''
       }
     }
   },
   methods: {
-    loadCategory () {
-      let vm = this
-      vm.listCategory = []
-      this.$apollo.query(
-        {
-          query: GrupQuery,
-          variables: {
-            owner: vm.ownerID
-          },
-          fetchPolicy: 'no-cache'
-        }
-      ).then(function (result) {
-        var newListCategory = []
-        result.data.pengaturanGrup.forEach(function (i, k) {
-          newListCategory[k] = {slug: i.slug, berlaku: ['BALINDINOYO']}
-        })
-        vm.listCategory = newListCategory
-      })
-    },
     onSubmit (e) {
       let vm = this
-
       e.preventDefault()
-
       vm.isLoading = true
-      vm.$validator.validateAll()
-      // console.log(vm.category)
       if (vm.errors.count() === 0) {
         vm.$apollo.mutate({
-          mutation: AddCatalog,
-          variables: {
-            input: vm.form,
-            tambahGrup: vm.category
-          }
+          mutation: AddPlan,
+          variables: vm.form
         }).then(function (res) {
-          console.log(res)
-          if (res.data.updateBarang) {
-            vm.$emit('SUCCESS', res)
-          } else {
-            vm.$emit('FAIL', res)
-          }
+          vm.$router.replace('/basil/plan')
           vm.isLoading = false
         }).catch(function (e) {
-          console.log(e)
-          vm.$emit('FAIL', e)
+          vm.$emit('fail', e)
           vm.isLoading = false
         })
       } else {
         vm.isLoading = false
       }
     }
-  },
-  name: 'App',
-  component: {
-    VueNumeric
   }
 }
 </script>

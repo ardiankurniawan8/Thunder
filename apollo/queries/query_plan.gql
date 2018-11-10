@@ -7,6 +7,7 @@ query pengaturanBarang(
 		    list_harga{
 		      harga{
 		        nominal
+		        currency
 		      }
 		    }
 		}

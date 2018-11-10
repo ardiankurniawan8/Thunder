@@ -12,7 +12,7 @@
       <div class='card-text pt-4'>
         <TableProduct 
           ref="TableProduct" 
-          :headers="['upc','nama','list_harga']"
+          :headers="['upc','nama','harga']"
           :dataFilter="{
             owner: 'hello@thunderlab.id'
           }">
@@ -27,15 +27,8 @@ import TableProduct from '~/components/plan/product/table'
 
 export default {
   components: { TableProduct },
-  computed: {
-    storeChoice: function () {
-      return this.selectedStore.value
-    }
-  },
   methods: {
     check (val) {
-      this.selectedStore = val
-
       setTimeout(() => {
         this.$refs.TableProduct.fetch()
       }, 10)
