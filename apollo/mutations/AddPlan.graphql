@@ -1,6 +1,6 @@
 mutation AddPlan($kode:String, $nama:String, $harga:Int){
   updateBarang(input:{upc:$kode,nama:$nama,thumbnail:"",kode_owner:"hello@thunderlab.id"}
-    ,tambahHarga:{harga:{nominal:$harga,currency:"IDR"},mulai:"2018-07-01 00:00:00",hingga:"2019-07-01 00:00:00",penetapan:{satuan:"month",bundle:1},berlaku:"Thunder"}){
+    ,tambahHarga:{harga:{nominal:$harga,currency:"IDR"},mulai:"2018-07-01 00:00:00",hingga:"",penetapan:{satuan:"month",bundle:1},berlaku:"Thunder"}){
     upc
     nama
   }

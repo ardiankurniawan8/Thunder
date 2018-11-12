@@ -1,0 +1,25 @@
+query pengaturanBarang(
+		$owner: String
+		$upc: String
+	){ 
+		pengaturanBarang(owner:$owner, upc:$upc){
+		    nama
+		    upc
+		    list_harga{
+		      harga{
+		        nominal
+		        currency
+		      }
+		      mulai{
+       			 date
+		      }
+		      hingga{
+		        date
+		      }
+		      penetapan{
+		        satuan
+		        bundle
+		      }
+		    }
+		}
+	}
