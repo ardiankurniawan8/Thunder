@@ -3,7 +3,7 @@ import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 
 export default (ctx) => {
-  const httpLink = new HttpLink({ uri: 'http://128.199.145.173:8118/graphql' })
+  const httpLink = new HttpLink({ uri: 'http://localhost:5000/graphql' })
 
   // middleware
   const middlewareLink = new ApolloLink((operation, forward) => {
