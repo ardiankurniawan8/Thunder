@@ -8,7 +8,7 @@ export default (ctx) => {
     ctx.redirect('/')
   }
 
-  const httpLink = new BatchHttpLink({ uri: 'http://128.199.145.173:8118/graphql' })
+  const httpLink = new BatchHttpLink({ uri: 'localhost:5000/graphql' })
 
   // middleware
   const middlewareLink = new ApolloLink((operation, forward) => {
