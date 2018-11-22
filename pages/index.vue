@@ -21,7 +21,7 @@ export default {
   components: { LoginForm },
   methods: {
     onLoginSuccess (data) {
-      this.$router.replace('/dashboard')
+      this.$store.dispatch('authentication/login', {user: data.user, token: data.token})
     },
     onLoginFail (data) {
       this.$router.replace('/register')

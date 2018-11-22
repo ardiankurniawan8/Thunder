@@ -1,9 +1,9 @@
 export const state = () => ({
-  me: null,
-  token: null,
-  org: null,
-  last_active: null,
-  authorizations: null
+  me: '',
+  token: '',
+  org: '',
+  last_active: '',
+  authorizations: ''
 })
 
 export const mutations = {
